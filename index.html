@@ -7,17 +7,46 @@
 
 <body>
 
-	<div id="saludo"></div>
-	<div id="container"></div>
+	<div id="content"></div>
 	
 	<script type="text/babel">
 
-		ReactDOM.render(
-			<h1>Hola mundo</h1>,
-			document.getElementById('saludo')
-		);
+		class AwesomeCounter extends React.Component{
+      constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
 
-		
+        this.state = {
+          count: 0
+        };
+      }
+
+      handleClick(){
+        this.setState({
+          count: this.state.count + 1
+        });
+      }
+
+      componentDidMount() {
+        console.log("Done. Click away!");
+      }
+
+      render(){
+        return (
+          <div class="my-component">
+            <h1>Hello, {this.props.name}</h1>
+            <h2>Count: {this.state.count}</h2>
+            <button type="button" onClick={this.handleClick}>+1!</button>
+          </div>
+        );
+      }
+    };
+
+    AwesomeCounter.defaultProps = {
+      name: "potato"
+    };
+
+    ReactDOM.render(<AwesomeCounter/>, document.getElementById('content'));
 	</script/>
 </body>
 </html>
